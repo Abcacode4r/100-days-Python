@@ -1,0 +1,24 @@
+def add(n1,n2):
+ The mighty Calculator
+
+ return n1+n2
+def subtract(n1,n2):
+  return n1-n2
+def multiply(n1,n2):
+  return n1*n2
+def divide(n1,n2):
+  return n1/n2
+Math_calc={
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": divide,
+}
+num_1=int(input("what is the first number?: "))
+num_2=int(input("what is the second number?: "))
+for sym in Math_calc:
+  print(sym)
+operation=input("Choose a function from the list above.")
+calc_ope= Math_calc[operation]
+Result=calc_ope(num_1,num_2)
+print(f"{num_1} {operation} {num_2} = {Result}")

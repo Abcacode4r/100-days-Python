@@ -1,0 +1,186 @@
+The sum of even numbers in a range of 1-100
+Total=0
+for number in range(1, 101):
+    if number%2==0:
+        Total+=number
+print(Total)
+
+Naming specific type of numbers out of a list
+
+for number in range(1, 101):
+    if number%3==0 and number%5==0:
+        print("FizzBuzz")
+    elif number%3==0:
+        print("Fizz")
+    elif number%5==0:
+        print("Buzz")
+    else:    
+        print(number)
+
+Random password generator
+
+#Password Generator Project
+import string
+import random
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+print("Welcome to the PyPassword Generator!")
+nr_letters= int(input("How many letters would you like in your password?\n")) 
+nr_symbols = int(input(f"How many symbols would you like?\n"))
+nr_numbers = int(input(f"How many numbers would you like?\n"))
+print('hello, Welcome to Password generator!')
+#Eazy Level - Order not randomised:
+#e.g. 4 letter, 2 symbol, 2 number = JduE&!91
+for char in range(1,nr_letters+1):
+  password+= random.choice(letters)
+  #print(password)
+for symb in range(1,nr_symbols+1):
+  password+= random.choice(symbols)
+  #print(password)
+for num in range(1,nr_numbers+1):
+  password+= random.choice(numbers)
+print("".join(password))
+#Hard Level - Order of characters randomised:
+#e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
+
+Random password in random sequence
+for char in range(1,nr_letters+1):
+  password_list+= random.choice(letters)
+  #print(password)
+for symb in range(1,nr_symbols+1):
+  password_list+= random.choice(symbols)
+  #print(password)
+for num in range(1,nr_numbers+1):
+  password_list+= random.choice(numbers)
+print(password_list)
+random.shuffle(password_list )
+print(password_list)
+password=""
+for char in password_list:
+  password+= char
+#print(password)
+print (password)
+or
+import string
+import random
+print("Welcome to the PyPassword Generator!")
+password=""
+length = int(input('\nEnter the length of password: '))
+lower = string.ascii_lowercase
+upper = string.ascii_uppercase
+num = string.digits
+symbols = string.punctuation
+all=lower+upper+num+symbols
+temp = random.sample(all,length) or all = string.ascii_letters + string.digits + string.punctuation
+						password = "".join(random.sample(all,length))
+password = "".join(temp)
+print(password)
+
+Prime number identification
+
+def prime_checker(number):
+    is_prime=True
+    for i in range(2,number):
+        if number%i==0:
+            is_prime=False
+    if is_prime:
+        print("it is a prime number.")
+    else:
+        print("it is not a prime number.")
+
+
+#Write your code above this line 👆
+    
+#Do NOT change any of the code below👇
+n = int(input("Check this number: "))
+prime_checker(number=n)
+
+Secret Auction code
+
+from replit import clear
+from art import logo
+print(logo)
+
+bids = {}
+bidding_finished = False
+
+def find_highest_bidder(bidding_record):
+  highest_bid = 0
+  winner = ""
+  # bidding_record = {"Angela": 123, "James": 321}
+  for bidder in bidding_record:
+    bid_amount = bidding_record[bidder]
+    if bid_amount > highest_bid: 
+      highest_bid = bid_amount
+      winner = bidder
+  print(f"The winner is {winner} with a bid of ${highest_bid}")
+
+while not bidding_finished:
+  name = input("What is your name?: ")
+  price = int(input("What is your bid?: $"))
+  bids[name] = price
+  should_continue = input("Are there any other bidders? Type 'yes or 'no'.\n")
+  if should_continue == "no":
+    bidding_finished = True
+    find_highest_bidder(bids)
+  elif should_continue == "yes":
+    clear()
+  
+
+"""
+
+Guessing th right number
+from random import randint
+EASY_LEVEL_TURNS = 10
+HARD_LEVEL_TURNS = 5
+
+#Function to check user's guess against actual answer.
+def check_answer(guess, answer, turns):
+  """checks answer against guess. Returns the number of turns remaining."""
+  if guess > answer:
+    print("Too high.")
+    return turns - 1
+  elif guess < answer:
+    print("Too low.")
+    return turns - 1
+  else:
+    print(f"You got it! The answer was {answer}.")
+
+#Make function to set difficulty.
+def set_difficulty():
+  level = input("Choose a difficulty. Type 'easy' or 'hard': ")
+  if level == "easy":
+    return EASY_LEVEL_TURNS
+  else:
+    return HARD_LEVEL_TURNS
+
+def game():
+  print(logo)
+  #Choosing a random number between 1 and 100.
+  print("Welcome to the Number Guessing Game!")
+  print("I'm thinking of a number between 1 and 100.")
+  answer = randint(1, 100)
+  print(f"Pssst, the correct answer is {answer}") 
+
+  turns = set_difficulty()
+  #Repeat the guessing functionality if they get it wrong.
+  guess = 0
+  while guess != answer:
+    print(f"You have {turns} attempts remaining to guess the number.")
+
+    #Let the user guess a number.
+    guess = int(input("Make a guess: "))
+
+    #Track the number of turns and reduce by 1 if they get it wrong.
+    turns = check_answer(guess, answer, turns)
+    if turns == 0:
+      print("You've run out of guesses, you lose.")
+      return
+    elif guess != answer:
+      print("Guess again.")
+
+
+game()
+
